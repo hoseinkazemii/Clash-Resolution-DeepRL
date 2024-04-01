@@ -1,5 +1,6 @@
 import networkx as nx
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def match_nodes_and_create_edges(df_structural, df_mechanical, df_clash_edges, **params):
 
@@ -17,6 +18,8 @@ def match_nodes_and_create_edges(df_structural, df_mechanical, df_clash_edges, *
     # Add mechanical nodes
     G.add_nodes_from(mechanical_nodes, bipartite=1)
 
+    # Filtering only Active clashes
+    df_clash_edges = df_clash_edges[df_clash_edges['Status']=="Active"]
     # Add edges from df_clash_edges
     edges = []
     # Add edges from clash_edges data

@@ -1,4 +1,4 @@
-from node2vec import Node2Vec
+# from node2vec import Node2Vec
 
 
 
@@ -16,6 +16,8 @@ def create_node_embedding(G, **params):
     # Obtain the embeddings
     node_embeddings = {node: model.wv[node] for node in G.nodes()}
 
+    print(node_embeddings)
+    raise ValueError
     # Now node_embeddings contains the embedding vectors for each node in the graph G
     # You can use these embeddings for further analysis or tasks such as clash resolution.
 

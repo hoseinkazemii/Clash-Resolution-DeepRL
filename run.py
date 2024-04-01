@@ -1,5 +1,6 @@
 from Preprocessing import *
-
+from Training import *
+import networkx as nx
 
 
 
@@ -25,7 +26,6 @@ def run():
         "IfcDuctFitting","IfcAirToAirHeatRecovery",
         "IfcCableCarrierSegment","IfcPump",
         "IfcElectricDistributionBoard","IfcCableCarrierFitting",
-        
         "IfcCableSegment", "IfcEquipment", "IfcFitting", 
         "IfcFlowTerminal", "IfcSpace", "IfcOpeningElement"
     ],
@@ -44,12 +44,16 @@ def run():
     }
 
 
-    myData = PreprocessData(**general_settings)
-    myData._load_and_preprocess_data()
+    # myData = PreprocessData(**general_settings)
+    # myData._load_and_preprocess_data()
+
+    G = nx.Graph()
+    G.add_nodes_from(['IfcWall1', 'IfcWall2', 'IfcBeam1', 'IfcBeam2'])
+    G.add_edges_from([('IfcWall1', 'IfcBeam1'), ('IfcWall2', 'IfcBeam2')])
 
 
-
-
+    agent = TrainAgent(**general_settings)
+    agent.train_rl_agent(G)
 
 
 

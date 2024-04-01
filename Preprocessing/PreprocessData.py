@@ -5,7 +5,6 @@ from ._save_clash_edges import save_clash_edges
 from ._load_nodes import load_nodes
 from ._load_edges import load_edges
 from ._match_nodes_and_create_edges import match_nodes_and_create_edges
-from ._create_node_embedding import create_node_embedding
 
 
 class PreprocessData():
@@ -29,4 +28,3 @@ class PreprocessData():
 		df_structural, df_mechanical = load_nodes(**self.__dict__)
 		df_clash_edges = load_edges(**self.__dict__)
 		G = match_nodes_and_create_edges(df_structural, df_mechanical, df_clash_edges, **self.__dict__)
-		create_node_embedding(G, **self.__dict__)
